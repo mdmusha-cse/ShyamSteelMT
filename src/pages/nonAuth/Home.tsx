@@ -41,7 +41,7 @@ function Home() {
           }
         });
         console.log(messages);
-        
+
         setMessages(messages);
       });
 
@@ -55,8 +55,8 @@ function Home() {
       firestore().collection('messages').add({
         text: message,
         createdAt: firestore.FieldValue.serverTimestamp(),
-        userName: userCreds.name,
-        userId: userCreds.id
+        senderName: userCreds.name,
+        senderId: userCreds.id
       }).then(() => {
         setMessage('');
       });
@@ -68,10 +68,14 @@ function Home() {
 
   const renderMessage = (item: any) => {
     return (
-      <View style={[styles._chat_box, { backgroundColor: item.item.userId == userCreds.id ? '#58D68D' : '#D5DBDB', }]}>
-        <Text style={styles._chat_box_name}>{item.item.userName}</Text>
+      <>{item.item.senderId == userCreds.id ? <View style={styles._sender_chat_box}>
+        <Text style={styles._chat_box_name}>{item.item.senderName}</Text>
         <Text style={styles._chat_box_msg}>{item.item.text}</Text>
-      </View>
+      </View> :
+        <View style={styles._receiver_chat_box}>
+          <Text style={styles._chat_box_name}>{item.item.senderName}</Text>
+          <Text style={styles._chat_box_msg}>{item.item.text}</Text>
+        </View>}</>
     );
   }
 

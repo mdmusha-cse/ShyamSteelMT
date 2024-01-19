@@ -16,10 +16,17 @@ export default StyleSheet.create({
     _btn: {
         padding: 5
     },
-    _chat_box:{
+    _sender_chat_box:{
         padding: 8,
         margin: 5, 
-        borderRadius: 5
+        borderRadius: 5,
+        backgroundColor:'#D5DBDB'
+    },
+    _receiver_chat_box:{
+        padding: 8,
+        margin: 5, 
+        borderRadius: 5,
+        backgroundColor:'#58D68D'
     },
     _chat_box_name:{
         color: '#000000', 
